@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>News App</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom CSS for the navigation bar */
+
+        .navbar-collapse {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+        
+        /* Adjust the navbar links */
+        .navbar-nav {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+        
+        .nav-item {
+            margin: 0 10px; /* Adjust spacing between nav items as needed */
+        }
+
+
+
+        .navbar {
+            background-color: #343a40;
+            display: flex;
+             justify-content: center;
+
+        }
+
+        .navbar-brand,
+        .nav-link {
+            color: #ffffff !important;
+        }
+
+        .nav-link.active {
+            font-weight: bold;
+        }
+
+        /* Custom CSS for the news articles */
+        .newsbox {
+            display: flex;
+            margin: 20px 0;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .img_dev img {
+            max-width: 150px;
+            max-height: 150px;
+            object-fit: cover;
+            margin-right: 20px;
+        }
+
+        .main_news h3 {
+            font-size: 1.5em;
+            margin: 0;
+        }
+
+        body {
+            padding: 1%;
+        }
+
+        .img_dev {
+            margin-right: 3%;
+        }
+
+        .newsbox {
+            display: flex;
+            border: 3px solid black;
+            margin: 1% 3%;
+            padding: 1%;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">News App</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url_for('sports')}}">Sports</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url_for('tech')}}">Tech</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url_for('entertainment')}}">Entertainment</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url_for('stocks')}}">Business</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Today's News</h1>
+        {% for news in case.articles %}
+        <div class="newsbox">
+            <div class="img_dev">
+                <img src="{{ news.urlToImage }}" alt="No image found">
+            </div>
+            <div class="main_news">
+                <h3>{{ news.title }}</h3>
+                <p>Author: {{ news.author }}</p>
+                <p>Description: {{ news.description }}</p>
+                <a href="{{news.url}}">Read More</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

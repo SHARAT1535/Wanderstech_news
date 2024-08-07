@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sports App</title>
+    <style>
+        body {
+            padding: 1%;
+            font-family: Arial, sans-serif;
+        }
+
+        .sportsnewsbox {
+            display: flex;
+            border: 3px solid black;
+            margin: 1% 3%;
+            padding: 1%;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+        }
+
+        .sports_img_Dev {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-right: 1rem;
+        }
+
+        .sports_img_Dev img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .sports_main_news {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sports_main_news h3 {
+            margin: 0 0 1rem 0;
+            font-size: 1.5em;
+        }
+
+        .sports_main_news p {
+            margin: 0.5rem 0;
+        }
+        .btn-read-more {
+            align-self: flex-start;
+            padding: 0.5rem 1rem;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        .sports_main_news a {
+            word-break: break-all; /* Ensure long URLs wrap */
+            color: blue;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 align="center">Tech News</h1>
+    {% for snews in tcase.articles %}
+    <div class="sportsnewsbox">
+        <div class="sports_img_Dev">
+            <img src="{{ snews.urlToImage }}" alt="No image found" height="270rem" onerror="this.onerror=null;this.src='path/to/placeholder/image.jpg';">
+        </div>
+        <div class="sports_main_news">
+            <h3>{{ snews.title }}</h3>
+            <p>Author: {{ snews.author }}</p>
+            <p>Description: {{ snews.description }}</p>
+            <a href="{{ snews.url }}" class="btn-read-more" target="_blank">Read More</a>
+        </div>
+    </div>
+    {% endfor %}
+</body>
+
+</html>
